@@ -1,0 +1,32 @@
+rails g model Comment commentable:references{polymorphic}
+rake db:migrate
+to create comment for user
+Comment.create(content:'I am a chef', commentable_id:1, commentable_type:'User')
+to check if comment was created for user
+User.first.comments
+to create comment for user
+Comment.create(content:'I am an Anthropologist', commentable:User.second)
+to check
+User.second.comments
+to create comment on blog
+Comment.create(content:'I like blog 2', commentable:Blog.second)
+to check
+Blog.second.comments
+to create post comment
+Comment.create(content:'I like post 2', commentable:Post.third)
+to check
+Post.third.comments
+to create comment on message
+Comment.create(content:'I like msg 2' commentable:Message.second)
+to check
+Message.second.comments
+to update comment on message
+Comment.second.update(content:'I like msg 0', commentable:Message.second)
+to check
+Comment.all
+Update comment on Post
+Comment.second.update(content:'I like msg 0', commentable:Post.second)
+Update comment on Blog
+Comment.second.update(content:'I like msg 0', commentable:Blog.second)
+update comment on user
+Comment.first.update(content:'I like Nachos', commentable:User.second)
